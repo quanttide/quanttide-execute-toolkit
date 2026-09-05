@@ -1,0 +1,21 @@
+name: ci-python
+
+on:
+  push:
+    branches: [main]
+    paths: ['packages/python/**', 'tests/**']
+  pull_request:
+    paths: ['packages/python/**', 'tests/**']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run ruff check .
+      - run: uv run pytest

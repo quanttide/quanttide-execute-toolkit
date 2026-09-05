@@ -4,7 +4,9 @@
   "description": "量潮执行管理 TypeScript SDK（List × Task × Outcome 领域模型）",
   "type": "module",
   "exports": {
-    ".": "./src/models.ts"
+    ".": "./src/index.ts",
+    "./models": "./src/models.ts",
+    "./client": "./src/client.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

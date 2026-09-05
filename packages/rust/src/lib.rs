@@ -4,6 +4,9 @@
 //! 为单一事实源。JSON 字段名与规范示例一一对应（snake_case），Rust 字段名
 //! 天然 snake_case，无需 rename。
 
+pub mod client;
+pub use client::{ExecuteApiError, ExecuteClient, DEFAULT_BASE_URL};
+
 use serde::{Deserialize, Serialize};
 
 /// 任务优先级：urgent / high / medium / low。

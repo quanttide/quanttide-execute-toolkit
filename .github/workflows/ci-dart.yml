@@ -1,0 +1,23 @@
+name: ci-dart
+
+on:
+  push:
+    branches: [main]
+    paths: ['packages/dart/**', 'tests/**']
+  pull_request:
+    paths: ['packages/dart/**', 'tests/**']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/dart
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - run: dart analyze lib/ test/
+      - run: dart test
