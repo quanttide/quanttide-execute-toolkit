@@ -1,14 +1,12 @@
 //! 执行云 API 客户端：封装 docs/specification 定义的端点。
 //!
 //! 方法语义与规格一致：GET 读取；POST 创建（id 服务端生成，201）；PUT 全量更新；DELETE 删除。
+//! base_url 必填，由调用方（应用层）提供。
 
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 
 use crate::{Executor, List, Outcome, Task};
-
-/// 系统级 API 网关。
-pub const DEFAULT_BASE_URL: &str = "https://api.quanttide.com/qtcloud-execute";
 
 /// API 调用异常：携带 HTTP 状态码与服务端错误信息。
 #[derive(Debug)]
@@ -29,12 +27,6 @@ impl std::error::Error for ExecuteApiError {}
 pub struct ExecuteClient {
     base_url: String,
     http: reqwest::blocking::Client,
-}
-
-impl Default for ExecuteClient {
-    fn default() -> Self {
-        Self::new(DEFAULT_BASE_URL)
-    }
 }
 
 impl ExecuteClient {

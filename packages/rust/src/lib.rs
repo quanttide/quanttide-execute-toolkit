@@ -5,7 +5,7 @@
 //! 天然 snake_case，无需 rename。
 
 pub mod client;
-pub use client::{ExecuteApiError, ExecuteClient, DEFAULT_BASE_URL};
+pub use client::{ExecuteApiError, ExecuteClient};
 
 use serde::{Deserialize, Serialize};
 

@@ -9,9 +9,6 @@ import 'package:http/http.dart' as http;
 
 import 'models.dart';
 
-/// 系统级 API 网关。
-const defaultBaseUrl = 'https://api.quanttide.com/qtcloud-execute';
-
 /// API 调用异常：携带 HTTP 状态码与服务端错误信息。
 class ExecuteApiException implements Exception {
   const ExecuteApiException(this.statusCode, this.message);
@@ -25,8 +22,8 @@ class ExecuteApiException implements Exception {
 
 /// 执行云 API 客户端。
 class ExecuteClient {
-  ExecuteClient({String? baseUrl, http.Client? client})
-    : baseUrl = (baseUrl ?? defaultBaseUrl).replaceAll(RegExp(r'/\$'), ''),
+  ExecuteClient({required String baseUrl, http.Client? client})
+    : baseUrl = baseUrl.replaceAll(RegExp(r'/\$'), ''),
       _client = client ?? http.Client();
 
   final String baseUrl;

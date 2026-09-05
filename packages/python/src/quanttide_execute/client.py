@@ -1,7 +1,7 @@
 """执行云 API 客户端：封装 docs/specification 定义的端点。
 
 方法语义与规格一致：GET 读取；POST 创建（id 服务端生成，201）；PUT 全量更新；
-DELETE 删除。非 2xx 抛 ExecuteApiError。
+DELETE 删除。非 2xx 抛 ExecuteApiError。base_url 必填，由调用方（应用层）提供。
 """
 
 from typing import Any
@@ -12,8 +12,6 @@ from .models.executor import Executor
 from .models.list import ExecuteList
 from .models.outcome import Outcome
 from .models.task import Task
-
-DEFAULT_BASE_URL = "https://api.quanttide.com/qtcloud-execute"
 
 
 class ExecuteApiError(Exception):
@@ -28,7 +26,7 @@ class ExecuteApiError(Exception):
 class ExecuteClient:
     """执行云 API 客户端。"""
 
-    def __init__(self, base_url: str = DEFAULT_BASE_URL, http: httpx.Client | None = None):
+    def __init__(self, base_url: str, http: httpx.Client | None = None):
         self.base_url = base_url.rstrip("/")
         self._http = http or httpx.Client(timeout=10)
 

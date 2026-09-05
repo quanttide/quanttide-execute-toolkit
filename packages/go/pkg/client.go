@@ -9,9 +9,6 @@ import (
 	"strings"
 )
 
-// DefaultBaseURL 系统级 API 网关。
-const DefaultBaseURL = "https://api.quanttide.com/qtcloud-execute"
-
 // APIError API 调用异常：携带 HTTP 状态码与服务端错误信息。
 type APIError struct {
 	StatusCode int
@@ -28,10 +25,10 @@ type Client struct {
 	HTTP    *http.Client
 }
 
-// NewClient 创建客户端（baseURL 为空时用默认网关）。
+// NewClient 创建客户端（baseURL 必填，由调用方/应用层提供）。
 func NewClient(baseURL string) *Client {
 	if baseURL == "" {
-		baseURL = DefaultBaseURL
+		panic("baseURL 必填：工程标准不在工具库内定义 API 地址")
 	}
 	return &Client{BaseURL: strings.TrimRight(baseURL, "/"), HTTP: http.DefaultClient}
 }

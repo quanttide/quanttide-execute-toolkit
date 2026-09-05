@@ -1,8 +1,6 @@
-// 执行云 API 客户端：封装 docs/specification 定义的端点。
-// 方法语义与规格一致：GET 读取；POST 创建（id 服务端生成，201）；PUT 全量更新；DELETE 删除。
+//! 方法语义与规格一致：GET 读取；POST 创建（id 服务端生成，201）；PUT 全量更新；DELETE 删除。
+//! base_url 必填，由调用方（应用层）提供。
 import type { Executor, List, Outcome, Task } from "./models.js";
-
-export const DEFAULT_BASE_URL = "https://api.quanttide.com/qtcloud-execute";
 
 /** API 调用异常：携带 HTTP 状态码与服务端错误信息。 */
 export class ExecuteApiError extends Error {
@@ -15,7 +13,7 @@ export class ExecuteApiError extends Error {
 }
 
 export interface ExecuteClientOptions {
-  baseUrl?: string;
+  baseUrl: string;
   fetch?: typeof fetch;
 }
 
@@ -23,7 +21,7 @@ export class ExecuteClient {
   private readonly baseUrl: string;
   private readonly fetchImpl: typeof fetch;
 
-  constructor({ baseUrl = DEFAULT_BASE_URL, fetch: fetchImpl = fetch }: ExecuteClientOptions = {}) {
+  constructor({ baseUrl, fetch: fetchImpl = fetch }: ExecuteClientOptions) {
     this.baseUrl = baseUrl.replace(/\/$/, "");
     this.fetchImpl = fetchImpl;
   }
