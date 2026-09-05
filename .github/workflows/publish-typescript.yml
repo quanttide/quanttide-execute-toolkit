@@ -1,0 +1,35 @@
+name: publish-typescript
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    if: startsWith(github.ref, 'refs/tags/typescript/')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/typescript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: packages/typescript/package-lock.json
+      - run: npm ci
+      - name: 校验包版本与 tag 一致
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/typescript/v}"
+          PKG_VERSION="$(npm pkg get version | tr -d '"')"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "tag 版本（$TAG_VERSION）与 package.json 版本（$PKG_VERSION）不一致" >&2
+            exit 1
+          fi
+      - run: npm test
+      - name: 发布到 npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_API_TOKEN }}
