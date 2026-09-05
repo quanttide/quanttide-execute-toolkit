@@ -1,0 +1,19 @@
+{
+  "id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "list_id": "5f0c9a1e-3d4b-4e8f-9a2c-1b7d6e5f4a3c",
+  "title": "整理客户面板口径确认单",
+  "description": "做什么：产出二期指标口径确认文件（变量定义、算例、边界条件）。为什么：第一版策划书曾因口径误解返工。怎样算完成：客户书面确认算例与边界条件。",
+  "priority": "high",
+  "owner_id": "b3d3486a-19de-4f0d-8f6e-2a5c4b6d7e8f",
+  "reviewer_id": "c4e4597b-20ef-4a1e-9a7f-3b6d5c7e8f9a",
+  "started_at": "2026-09-05T09:00:00+08:00",
+  "due_at": "2026-09-10T18:00:00+08:00",
+  "completed_at": null,
+  "status": "in_progress",
+  "is_active": true,
+  "outcome_ids": [
+    "9b2f8c3d-1a4e-4f5b-8c6d-7e0a9b1c2d3e"
+  ],
+  "created_at": "2026-09-03T09:30:00+08:00",
+  "updated_at": "2026-09-05T15:20:00+08:00"
+}

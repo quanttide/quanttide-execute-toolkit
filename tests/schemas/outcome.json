@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Outcome",
+  "type": "object",
+  "required": ["id", "list_id", "title", "description"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "list_id": { "type": "string", "format": "uuid" },
+    "task_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "title": { "type": "string" },
+    "description": { "type": "string" }
+  }
+}

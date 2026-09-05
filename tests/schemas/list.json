@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "List",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" },
+    "tasks": {
+      "type": "array",
+      "description": "本清单的任务 id 集合",
+      "items": { "type": "string" }
+    },
+    "outcomes": {
+      "type": "array",
+      "description": "本清单的结果 id 集合",
+      "items": { "type": "string" }
+    }
+  }
+}
