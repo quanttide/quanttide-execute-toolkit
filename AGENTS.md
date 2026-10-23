@@ -2,7 +2,7 @@
 
 ## 定位
 
-量潮执行管理工具箱：封装执行管理领域模型（List × Task × Outcome，Executor 引用实体）的跨语言 SDK。
+量潮执行管理标准库：封装执行管理领域模型（List × Task × Outcome，Executor 引用实体）的跨语言 SDK。
 
 ## 模型事实源
 
